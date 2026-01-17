@@ -35,7 +35,7 @@ Now, in my **final year**, I’m working on my own project (as part of a team), 
 - **Memory:** 8 GB DDR4 2666 MHz RAM  
 
 ### 💾 Storage
-- **2 × 1 TB HDD** (RAID 1 / Mirror)  
+- **2 × 1 TB HDD** (RAID 1)  
 - **240 GB SSD** (Core OS)
 
 ## 🌐 Networking Focus
