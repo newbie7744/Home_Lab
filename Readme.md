@@ -1,9 +1,3 @@
-🎓 **Current Status**
-
-- Final-year Engineering student (Graduating: **April 2026**)  
-- Actively seeking opportunities in **DevOps / Infrastructure / Networking**  
-- Open to internships, entry-level, or junior roles
-
 🚀 **Self-Taught Junior DevOps Engineer | Part-Time Network Engineer**
 
 I’m an engineering student with a strong foundation in **Linux, Docker, networking, and homelab infrastructure**.  
