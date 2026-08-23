@@ -1,0 +1,39 @@
+services:
+  Authelia-MIH-Lab:
+    image: 'authelia/authelia'
+    container_name: 'Authelia'
+    ports:
+      - 9091:9091
+    volumes:
+      - /home/mih/Docker-Config/Authelia:/config
+    restart: 'unless-stopped'
+    networks:
+      - MIH-Lab
+    hostname: Authelia-MIH-Lab
+    depends_on:
+      - Authelia-Redis-MIH-Lab
+    healthcheck:
+      ## In production the healthcheck section should be commented.
+      disable: false
+    environment:
+      TZ: ${INDIA_TZ}
+
+  Authelia-Redis-MIH-Lab:
+    image: 'redis:alpine'
+    container_name: Authelia-Redis
+    healthcheck:
+        test: ["CMD", "redis-cli", "ping"]
+        interval: 10s
+        timeout: 5s
+        retries: 5
+    volumes:
+      - /home/mih/Docker-Config/Redis-Authelia:/data
+    restart: 'unless-stopped'
+    networks:
+      - MIH-Lab
+    hostname: Authelia-Redis-MIH-Lab
+    environment:
+      TZ: ${INDIA_TZ}
+networks:
+   MIH-Lab:
+      external: True

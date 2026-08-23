@@ -1,0 +1,16 @@
+services:
+  duckdns:
+    image: lscr.io/linuxserver/duckdns:latest
+    container_name: Duck-DNS
+    network_mode: host
+    environment:
+      - PUID=911
+      - PGID=911
+      - TZ= ${INDIA_TZ}
+      - SUBDOMAINS= ${DOMAINS}
+      - TOKEN= ${DUCK_DNS_TOKEN}
+      - UPDATE_IP=ipv4
+      - LOG_FILE=true
+    volumes:
+      - /home/mih/Docker-Config/Duck-DNS:/config
+    restart: unless-stopped

@@ -1,0 +1,33 @@
+---
+services:
+  qbittorrent:
+    image: lscr.io/linuxserver/qbittorrent:latest
+    container_name: qbittorrent
+    healthcheck:
+     test:
+        - CMD-SHELL
+        - 'curl -fsS http://127.0.0.1:8846/ >/dev/null || exit 1'
+     interval: 30s
+     timeout: 10s
+     retries: 3
+     start_period: 30s
+    environment:
+      - PUID=${PUID_MIH}
+      - PGID=${PGID_MIH}
+      - TZ=${INDIA_TZ}
+      - WEBUI_PORT=${TORRENT_WEB_PORT}
+      - TORRENTING_PORT=${TORRENT_PORT}
+    volumes:
+      - /home/mih/Docker-Config/Qbitorrent:/config
+      - /home/mih/Docker-Config/Qbitorrent/Downloads:/downloads #optional
+    ports:
+      - 8846:8846
+      - 6881:6881
+      - 6881:6881/udp
+    networks:
+        MIH-Lab:
+    restart: unless-stopped
+
+networks:
+    MIH-Lab:
+      external: true

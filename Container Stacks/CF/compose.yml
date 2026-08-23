@@ -1,0 +1,15 @@
+services:
+  cloudflare-ddns:
+    image: favonia/cloudflare-ddns:latest
+    container_name: Cloudflare-DNS
+    network_mode: host
+    restart: always
+    user: "1000:1000"
+    read_only: true
+    cap_drop: [all]
+    security_opt: [no-new-privileges:true]
+    environment:
+      - CLOUDFLARE_API_TOKEN= ${CF_TOKEN}
+      - DOMAINS= ${DOMAINS}
+      - PROXIED=is${DOMAINS}  # Enable proxy for specific domains
+      - IP6_PROVIDER=none

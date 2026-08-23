@@ -1,0 +1,18 @@
+services:
+  portainer:
+    container_name: Portainer
+    image: portainer/portainer-ce:lts
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
+    networks:
+      - MIH-Lab
+    ports:
+      - "9443:9443"
+networks:
+  MIH-Lab:
+    external: true
+volumes:
+  portainer_data:
+    name: portainer_data

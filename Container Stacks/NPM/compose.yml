@@ -1,0 +1,26 @@
+services:
+  Nginx:
+    image: 'jc21/nginx-proxy-manager:2.15.1'
+    container_name: Nginx-Proxy-Manager
+    restart: unless-stopped
+    ports:
+      - '80:80' # Public HTTP Port
+      - '443:443' # Public HTTPS Port
+      - '81:81' # Admin Web Port
+
+    environment:
+      TZ: ${INDIA_TZ}
+    volumes:
+      - /home/mih/Docker-Config/NPM:/data
+      - /home/mih/Docker-Config/NPM:/etc/letsencrypt
+    networks:
+      - MIH-Lab
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:81"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 15s
+networks:
+  MIH-Lab:
+    external: true

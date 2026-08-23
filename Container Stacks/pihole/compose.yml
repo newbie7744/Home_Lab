@@ -1,0 +1,29 @@
+services:
+  pihole:
+    container_name: Pihole-DNS
+    image: pihole/pihole:latest
+
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "8243:443/tcp"
+
+    environment:
+      TZ: ${INDIA_TZ}
+      FTLCONF_webserver_api_password: ${PIHOLE_PASSWORD}
+
+    volumes:
+      - '/home/mih/Docker-Config/Pi-Hole:/etc/pihole'
+      - '/etc/localtime:/etc/localtime:ro'
+
+    cap_add:
+      - SYS_NICE
+
+    restart: unless-stopped
+
+    networks:
+      - MIH-Lab
+
+networks:
+  MIH-Lab:
+    external: true
